@@ -3,19 +3,19 @@ const http = require("http");
 const host = "localhost";
 const port = 8000;
 
-const response = (res, htmlCode) => {
+const response = (res, message) => {
   res.setHeader("content-type", "text/html");
   res.writeHead(200);
-  res.end(htmlCode);
+  res.end(`<p> ${message} </p>`);
 };
 
 const server = http.createServer((req, res) => {
   const url = req.url;
-
+  
   if (url === "/other") {
-    response(res, "<p>this is another route</p>");
+    response(res, "this is another route</p>");
   } else {
-    response(res, "<p>HTML code</p>");
+    response(res, "HTML code");
   }
 });
 

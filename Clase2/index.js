@@ -9,6 +9,12 @@ const response = (res, message) => {
   res.end(`<p> ${message} </p>`);
 };
 
+const writeJSONResponse = (res, json) => {
+  res.setHeader("Content-Type", "application/json");
+  res.writeHead(200);
+  res.end(JSON.stringify(json));
+};
+
 const server = http.createServer((req, res) => {
   const url = req.url;
   

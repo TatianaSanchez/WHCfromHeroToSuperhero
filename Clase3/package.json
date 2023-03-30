@@ -7,8 +7,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node ./bin/www",
-    "watch": "nodemon"
+    "serve": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",

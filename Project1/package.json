@@ -1,13 +1,14 @@
 {
-  "name": "project1",
-  "version": "1.0.0",
+  "name": "project-products-api",
+  "version": "0.0.1",
   "description": "From Hero to Superhero \"Stady, rady, go!\".",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon ./src/index.js",
+    "dev": "nodemon ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"    
   },
-  "author": "Tatiana Sanchez Soto",
+  "author": "Tatiana Sanchez <tatiansanchezsoto@gmial.com>",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",

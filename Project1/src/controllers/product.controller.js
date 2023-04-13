@@ -16,13 +16,6 @@ const getProductById = async (req, res) => {
     params: { productId },
   } = req;
 
-  if (!productId) {
-    res.status(400).send({
-      status: "FAILED",
-      data: { error: "Parameter ':productId' can not be empty" },
-    });
-  }
-
   try {
     const product = await productService.getProductById(productId);
     res.send({ status: "OK", data: product });
@@ -35,25 +28,6 @@ const getProductById = async (req, res) => {
 
 const createNewProduct = async (req, res) => {
   const { body } = req;
-
-  
-
-  if (
-    !body ||
-    !body.name ||
-    !body.description ||
-    !body.price ||
-    !body.quantity ||
-    !body.category
-  ) {
-    res.status(400).send({
-      status: "Bad Request",
-      data: {
-        error:
-          "One of the following keys is missing or is empty in request body",
-      },
-    });
-  }
 
   // *** ADD ***
   const newProduct = {
@@ -76,33 +50,6 @@ const createNewProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   const { body } = req;
-  const {
-    params: { productId },
-  } = req;
-
-  if (!productId) {
-    res.status(400).send({
-      status: "FAILED",
-      data: { error: "Parameter ':productId' can not be empty" },
-    });
-  }
-
-  if (
-    !body ||
-    !body.name ||
-    !body.description ||
-    !body.price ||
-    !body.quantity ||
-    !body.category
-  ) {
-    res.status(400).send({
-      status: "Bad Request",
-      data: {
-        error:
-          "One of the following keys is missing or is empty in request body",
-      },
-    });
-  }
 
   // *** Update ***
   const product = {
@@ -114,7 +61,10 @@ const updateProduct = async (req, res) => {
   };
 
   try {
-    const updatedProduct = await productService.updateProduct(productId, product);
+    const updatedProduct = await productService.updateProduct(
+      productId,
+      product
+    );
     res.status(201).send({ status: "OK", data: updatedProduct });
   } catch (error) {
     res
@@ -127,13 +77,6 @@ const deleteProduct = async (req, res) => {
   const {
     params: { productId },
   } = req;
-
-  if (!productId) {
-    res.status(400).send({
-      status: "FAILED",
-      data: { error: "Parameter ':productId' can not be empty" },
-    });
-  }
 
   try {
     const message = await productService.deleteProduct(productId);
@@ -150,5 +93,5 @@ module.exports = {
   getProductById,
   createNewProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
 };
